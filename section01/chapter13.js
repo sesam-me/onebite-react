@@ -29,6 +29,8 @@ main(() => {
 
 
 // 2. 콜백함수의  활용
+
+// ## 콜백함수 활용 X
 function repeat(count) {
     for (let idx = 1; idx <= count; idx++) {
         console.log(idx);
@@ -41,12 +43,12 @@ function repeatDouble(count) {
     }
 }
 
-// 콜백함수를 이용하면 굳이 이렇게 함수를 겹치게 사용할 필요가 없다
-
 repeat(5);
 repeatDouble(5)
+// => 콜백함수를 이용하면 굳이 이렇게 함수를 겹치게 사용할 필요가 없다
 
 
+// ## 콜백함수 사용 O
 function repeat(count, callback) {
     for (let idx = 1; idx <= count; idx++) {
         callback(idx);
@@ -60,8 +62,10 @@ repeat(5, function (idx) {
 repeat(5, function (idx) {
     console.log(idx *2);
 });
+// 콜백함수를 이용하여 함수 활용이 다양해지고 코드가 더 간결해진다.
 
-// 더 간단하게 표현
+
+// 더 간단하게 표현!
 repeat(5, (idx) => {
     console.log(idx);
 });
