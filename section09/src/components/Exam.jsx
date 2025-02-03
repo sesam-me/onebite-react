@@ -34,6 +34,7 @@ const Exam = () => {
     // 인수 : 상태가 어떻게 변화되길 원하는지
     // -> 액션 객체체
     dispatch({
+      // 안에 있는걸 action객체라고 부름.. 위에
       type: "INCREASE",
       data: 1,
     });
