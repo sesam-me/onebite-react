@@ -1,4 +1,10 @@
-import { useCallback, useReducer, useRef, useState } from "react";
+import {
+  useCallback,
+  useReducer,
+  useRef,
+  useState,
+  createContext,
+} from "react";
 import "./App.css";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
@@ -40,6 +46,8 @@ function reducer(state, action) {
   }
 }
 
+export const TodoContext = createContext();
+
 function App() {
   const [todos, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(3);
@@ -63,9 +71,6 @@ function App() {
     });
   }, []);
 
-  // useCallback: 함수를 메모이제이션한다!라고 생각하면 된다.
-  // useCallback(() => [])  // 첫번째인수: 함수를 그대로 반환,
-  // 두번째 인수: 아무것도 적혀있지 않다면, 컴포넌트 마운트 이후에는 생성되지 않는다.
   const onDelete = useCallback((targetId) => {
     dispatch({
       type: "DELETE",
@@ -75,10 +80,12 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Exam></Exam> */}
       <Header />
-      <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoContext.Provider value={{ todos, onCreate, onUpdate, onDelete }}>
+        <Editor />
+        {/* <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} /> */}
+        <List />
+      </TodoContext.Provider>
     </div>
   );
 }

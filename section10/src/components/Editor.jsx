@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Editor.css";
 import { useRef } from "react";
+import { TodoContext } from "../App";
 
-const Editor = ({ onCreate }) => {
+const Editor = () => {
+  const { onCreate } = useContext(TodoContext); // 구조 분해 할당으로 data 가져옴..
   const [content, setContent] = useState("");
   const contentRef = useRef();
 

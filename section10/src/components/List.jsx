@@ -1,8 +1,11 @@
+import { TodoContext } from "../App";
 import "./List.css";
 import TodoItem from "./TodoItem";
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 
-const List = ({ todos, onUpdate, onDelete }) => {
+const List = () => {
+  const { todos } = useContext(TodoContext);
+
   const [search, setSearch] = useState("");
 
   const onChangeSearch = (e) => {
@@ -54,8 +57,8 @@ const List = ({ todos, onUpdate, onDelete }) => {
             <TodoItem
               key={todo.id}
               {...todo}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
+              // onUpdate={onUpdate} // TodoItem에서 직접 불러와서 사용할 것이기 때문에, 여기서부터 데이터를 가지고 가지 않아도 된다..
+              // onDelete={onDelete}
             />
           );
         })}
