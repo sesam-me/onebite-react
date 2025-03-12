@@ -1,11 +1,11 @@
+import { createContext, useReducer, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Diary from "./pages/Diary";
+import Edit from "./pages/Edit";
 import Home from "./pages/Home";
 import New from "./pages/New";
-import Edit from "./pages/Edit";
 import NotFound from "./pages/Notfound";
-import { useReducer, useRef, useContext, createContext } from "react";
 
 // 1. "/" : 모든 일기를 조회하는 Home 페이지
 // 2. "/new" : 새로운 일기를 작성하는 New 페이지
@@ -84,29 +84,6 @@ function App() {
 
   return (
     <>
-      <button
-        onClick={() => {
-          onCreate(new Date().getTime(), 1, "Hello");
-        }}
-      >
-        일기 추가 테스트
-      </button>
-      <button
-        onClick={() => {
-          onUpdate(1, new Date().getTime(), 3, "수정된 일기입니다.");
-        }}
-      >
-        일기 수정 테스트
-      </button>
-
-      <button
-        onClick={() => {
-          onDelete(1);
-        }}
-      >
-        일기 삭제 테스트
-      </button>
-
       <DiaryStateContext.Provider value={data}>
         <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
           <Routes>
